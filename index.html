@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FruitLens AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="app-header">
+
+    <!-- LOGO SVG LANGSUNG DI HTML -->
+    <div class="logo-wrapper">
+
+        <svg
+            class="fruitlens-logo"
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="FruitLens AI logo"
+        >
+
+            <!-- Background -->
+            <rect
+                x="5"
+                y="5"
+                width="190"
+                height="190"
+                rx="48"
+                fill="#eef8ef"
+            />
+
+
+            <!-- Scan corners -->
+
+            <path
+                d="M35 65V45C35 39 39 35 45 35H65"
+                fill="none"
+                stroke="#27864d"
+                stroke-width="10"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M135 35H155C161 35 165 39 165 45V65"
+                fill="none"
+                stroke="#27864d"
+                stroke-width="10"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M35 135V155C35 161 39 165 45 165H65"
+                fill="none"
+                stroke="#27864d"
+                stroke-width="10"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M135 165H155C161 165 165 161 165 155V135"
+                fill="none"
+                stroke="#27864d"
+                stroke-width="10"
+                stroke-linecap="round"
+            />
+
+
+            <!-- Scan circle -->
+
+            <circle
+                cx="100"
+                cy="103"
+                r="58"
+                fill="#ffffff"
+                stroke="#b8dfbd"
+                stroke-width="7"
+            />
+
+            <circle
+                cx="100"
+                cy="103"
+                r="48"
+                fill="#f2faf3"
+                stroke="#d5ecd8"
+                stroke-width="3"
+            />
+
+
+            <!-- Fruit body -->
+
+            <path
+                d="
+                M75 91
+                C75 75 86 66 100 66
+                C114 66 126 75 126 91
+                C126 115 113 137 100 142
+                C87 137 74 115 75 91Z
+                "
+                fill="#f23c45"
+            />
+
+
+            <!-- Fruit highlight -->
+
+            <path
+                d="
+                M108 76
+                C119 79 124 87 124 96
+                "
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="7"
+                stroke-linecap="round"
+                opacity="0.75"
+            />
+
+
+            <!-- Seeds -->
+
+            <ellipse
+                cx="88"
+                cy="91"
+                rx="3"
+                ry="6"
+                fill="#ffe58a"
+            />
+
+            <ellipse
+                cx="104"
+                cy="87"
+                rx="3"
+                ry="6"
+                fill="#ffe58a"
+            />
+
+            <ellipse
+                cx="114"
+                cy="101"
+                rx="3"
+                ry="6"
+                fill="#ffe58a"
+            />
+
+            <ellipse
+                cx="91"
+                cy="108"
+                rx="3"
+                ry="6"
+                fill="#ffe58a"
+            />
+
+            <ellipse
+                cx="106"
+                cy="116"
+                rx="3"
+                ry="6"
+                fill="#ffe58a"
+            />
+
+
+            <!-- Leaves -->
+
+            <path
+                d="
+                M99 72
+                C78 67 67 54 69 45
+                C84 43 98 52 101 70Z
+                "
+                fill="#42a84e"
+            />
+
+            <path
+                d="
+                M101 70
+                C103 50 115 39 127 38
+                C132 54 120 68 101 73Z
+                "
+                fill="#69bd42"
+            />
+
+
+            <!-- AI sparkle -->
+
+            <path
+                d="
+                M148 55
+                L152 64
+                L161 68
+                L152 72
+                L148 82
+                L144 72
+                L135 68
+                L144 64Z
+                "
+                fill="#54a85d"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <div class="header-text">
+
+        <div class="ai-badge">
+            ✦ AI POWERED
+        </div>
+
+        <h1>
+            FruitLens AI
+        </h1>
+
+        <p>
+            Kenali buahmu dengan bantuan AI
+        </p>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+    <!-- ================= SCAN BUAH ================= -->
+
+    <section class="card scan-card">
+
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                ◉
+            </div>
+
+            <div>
+
+                <h2>
+                    Scan Buah
+                </h2>
+
+                <p>
+                    Ambil atau pilih foto buah untuk dianalisis.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- UPLOAD -->
+
+        <label
+            for="imageInput"
+            class="upload-box"
+        >
+
+            <div class="upload-icon">
+                +
+            </div>
+
+            <strong>
+                Pilih Foto Buah
+            </strong>
+
+            <span>
+                JPG, PNG, atau foto dari kamera
+            </span>
+
+        </label>
+
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+        >
+
+
+
+        <!-- PREVIEW -->
+
+        <div class="preview-container">
+
+            <img
+                id="preview"
+                alt="Preview buah"
+            >
+
+        </div>
+
+
+
+        <!-- ANALYZE -->
+
+        <button
+            id="analyzeBtn"
+            class="primary-btn"
+            disabled
+        >
+
+            <span>
+                ✦
+            </span>
+
+            Analisis dengan AI
+
+        </button>
+
+
+
+        <!-- STATUS -->
+
+        <div class="status-box">
+
+            <span class="status-dot"></span>
+
+            <span id="statusText">
+                🤖 Memuat AI...
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= HASIL ================= -->
+
+    <section
+        class="card result-card"
+        id="resultCard"
+    >
+
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h2>
+                    Hasil Analisis
+                </h2>
+
+                <p>
+                    Hasil prediksi dari FruitLens AI.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HASIL UTAMA -->
+
+        <div class="result-main">
+
+            <div
+                class="result-name"
+                id="resultName"
+            >
+                -
+            </div>
+
+
+            <div class="confidence-label">
+
+                <span>
+                    Tingkat keyakinan AI
+                </span>
+
+                <strong id="confidenceText">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="confidence-bar">
+
+                <div
+                    id="confidenceBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= SECOND OPINION ================= -->
+
+        <div class="feature-box second-opinion">
+
+
+            <div class="feature-title">
+
+                <span class="feature-symbol">
+                    ✦
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        AI Second Opinion
+                    </h3>
+
+                    <p>
+                        Membandingkan prediksi AI.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="secondOpinion">
+
+                Belum ada hasil.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= INFO BUAH ================= -->
+
+        <div class="info-grid">
+
+
+            <!-- INFO -->
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    i
+                </div>
+
+                <div>
+
+                    <h3>
+                        Tentang Buah
+                    </h3>
+
+                    <p id="fruitInfo">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MANFAAT -->
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    +
+                </div>
+
+                <div>
+
+                    <h3>
+                        Manfaat
+                    </h3>
+
+                    <p id="fruitBenefits">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FUN FACT -->
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    ★
+                </div>
+
+                <div>
+
+                    <h3>
+                        Fun Fact
+                    </h3>
+
+                    <p id="fruitFact">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- WAKTU -->
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    ◷
+                </div>
+
+                <div>
+
+                    <h3>
+                        Cocok Dikonsumsi Saat
+                    </h3>
+
+                    <p id="fruitWhen">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= FRUIT MATCH ================= -->
+
+    <section class="card">
+
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                ✦
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Fruit Match
+                </h2>
+
+                <p>
+                    Temukan buah yang sesuai dengan kebutuhanmu.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <label
+            for="matchSelect"
+            class="select-label"
+        >
+
+            Kamu sedang mencari buah untuk...
+
+        </label>
+
+
+
+        <select id="matchSelect">
+
+            <option value="">
+                -- Pilih kebutuhan --
+            </option>
+
+            <option value="refreshing">
+                💧 Buah yang menyegarkan
+            </option>
+
+            <option value="vitaminC">
+                🍊 Sumber vitamin C
+            </option>
+
+            <option value="snack">
+                🍎 Camilan sehari-hari
+            </option>
+
+            <option value="activity">
+                🏃 Setelah beraktivitas
+            </option>
+
+            <option value="fiber">
+                🌱 Buah yang mengandung serat
+            </option>
+
+        </select>
+
+
+
+        <div id="matchResults"></div>
+
+
+    </section>
+
+
+
+    <!-- ================= RIWAYAT ================= -->
+
+    <section class="card">
+
+
+        <div class="section-heading history-heading">
+
+
+            <div class="section-icon">
+                ↺
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Riwayat Scan
+                </h2>
+
+                <p>
+                    Hasil scan yang pernah dilakukan.
+                </p>
+
+            </div>
+
+
+            <button
+                id="clearHistoryBtn"
+                class="clear-btn"
+            >
+                Hapus
+            </button>
+
+
+        </div>
+
+
+
+        <div id="historyList">
+
+            <div class="empty-history">
+                Belum ada riwayat scan.
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        FruitLens
+
+        <span>
+            AI
+        </span>
+
+    </div>
+
+
+    <p>
+        Smart fruit recognition for everyday life.
+    </p>
+
+</footer>
+
+
+
+<!-- ================= AI LIBRARY ================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js">
+</script>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js">
+</script>
+
+
+<!-- SCRIPT FRUITLENS -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
